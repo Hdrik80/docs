@@ -1,13 +1,86 @@
-version: 2.1
-
-orbs:
-  android: circleci/android@0.2.1
-
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/content/github/importing-your-projects-to-github/Hn-Tools.git
+version: 2
 jobs:
   build:
-    executor: android/android
+    docker:
+      # echo
+      #ls
+      #cd /sdcard
+      #ls
+      #sh.sl.sh
+      - image: circleci/golang:1.9
 
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/postgres:9.4
+
+    #### TEMPLATE_NOTE: go expects specific checkout path representing url
+    #### expecting it in the form of
+    ####   /go/src/github.com/circleci/go-tool
+    ####   /go/src/bitbucket.org/circleci/go-tool
+    working_directory: /go/src/github.com/{{ORG_Hn-Tools}}/{{REPO_bug}}
     steps:
       - checkout
-      - run:
-          command: ./gradlew build
+
+      # specify any bash command here prefixed with `run: `
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
+
+      #pkg update && pkg upgrade
+#pkg install nano
+#pkg install toilet
+#pkg install figlet  
+
+#sleep1
+#echo
+#toilet -f gay by Hen
+#echo $green”selamat datang
+#echo
+#sleep2
+#echo $yellow“silahkan pilih tool nya:’
+#echo
+#echo $cyan”1.)stabilkan jaringan”
+#echo
+#echo $blue”0.)keluar  ajah !!!
+#echo
+#echo $white
+#echo
+#red -p “pilihMana :”bro
+
+#if [ $bro  = 1 ] [  ||  [ $bro = 1 ]
+#then
+#clear
+#toilet -f big -f gay Hen
+#echo $green “stabil jaringan Hen”
+#sleep2
+#ping -s1000 1.1.1.1
+#f1
+
+#if [$bro= 0 ] || [$bro= 0 ]
+#then
+#clear
+#echo $yellow
+#figlet “Bye”
+#echo $white “To Be continued”
+#sleep3
+#exit
+#fi
+#then
+#clear
+#sh tes.sh
+
+#blue=’\033[34;1m’
+#green=’\033[32;1m’
+#purple=’\033[35;1m’
+#cyan=’\033[36;1m’
+#red=’\033[31;1m’
+#white=’\033[37;1m’
+#yellow=’\033[33;1m’
+#then
+#clear
+#sh tes.sh
+
+
